@@ -15,12 +15,14 @@ import selenium.webdriver.chrome.options
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import time
+from groupy.client import Client as groupmeClient
+gmclient = groupmeClient.from_token('mEd2vWApuNMkbnSAaHHddzoKHLwpecExfZR0E9ql')
+for gmgroups in gmclient.groups.list():
+	if gmgroups.name == 'AW Production Log':
+     		gmlog = gmgroups
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 
-
-from io import BytesIO
-from PIL import Image
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
@@ -39,7 +41,7 @@ def send_to_groupme(name,count):
 ##    for gmmessage in gmlog.messages.list_all():
 ##        print(gmmessage.text)
 	if count != 0:
-		reply(name+' is now at '+str(count))
+		gmlog.post(text=name+' is now at '+str(count))
 	
 if 1==1:
 	activation = wks.cell(2,1).value
@@ -49,9 +51,6 @@ if 1==1:
 		for employee_number in range(3):#employee_count):
 			browser.get('https://solixlifeline.com')
 			time.sleep(1)#-#
-			png = browser.get_screenshot_as_png()
-			im = Image.open(BytesIO(png))
-			im.save('screenshot.png')
 			browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
 			browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
 			time.sleep(1)#-#
