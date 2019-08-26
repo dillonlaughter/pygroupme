@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "hurley-production",
+  "private_key_id": "54b7dbd26519ba6ffadb97e6c80e4d1c86048611",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCOoICrvGqhbxnY\nloamAKXlYE9gi4SfbAaBzNvlZnJ8xMdCtrgw69Ni1/2VzjS1+z9kCNNjNxhjBp6j\ns1GU4QJmwjhSKwkDn4LlzY2y91Sn50li5fP6lrBIp8AOHmfsaMD/qqR27BBcEDrw\nRjleO9xeXRvU3uwjO6VH6i/4w0Lx1QOitm0347X8IZ/k5xWEOchd34WarUeYeK7K\nTHscrW8GWVl0Y10yPa1AlCEfKNsduHTDOGToBrkaadTkV1Z5NrJ9mJ1K/YL3Cbzn\nn1hr3i36hdN3s0YBp9bMRSWsIEjPf42gsK6mL1slgdkkCacZIbsTBSNEfhIbseTs\nq7XKnUO5AgMBAAECggEAQ2kKx6CbCUfYgGzMoSMHRb1aZvgqK6tD/A9WEztzexMK\nVrbDoaOkWkBZw3cdpLFmSaJ+PpNovE0Bp792HJaoqua69eMPNJ4soO6hPWf2pBEF\nt2+V++dC1GQsur+WQL9WEMCXUPnL1ad6I9wc+zPxuMvq/paKJzDmsnG2UK4BMwjV\nOVm2V8cQMaNCn/GX9cJzF2nyKTY7JooGlBuXlO88EwahaYSqXxW1gwRuH8ipkr/R\nJXwv5/9L/ol3EEfd9u+6BXKopxB8+H5+2dnJznLRl+LslyNZAV8umZEHxu63+7k6\nQrojVfdnWv+GJiuNRIYG1K0WvayzEA/1DRlgvUbnjQKBgQC/thX/4f0ShrCpw+lz\n5eEil+4UTp8WXqk2Tu5HIsoXoKDa3i2T9odPUhNG+PttlWz8+B7yHbN0tdAxOLi8\nyVCZI14i3NFsGjg/tEK6TceBsdfzP5qgnV/JwWNhmRoUAlsPr4psZMOsRuxYyH26\nJsVcgDZNZuk3Kl33yoG+b/gA3wKBgQC+dKgIflhchmnLMz7oLgzNqPEfrnwxXkPD\nPlkbM88NKVDzSJQvzPTAn4BScMS19gn2ai825w9fWpiVsmOQN6Qr8DpHcHO+hWHD\neyTZnyMcbjJhXP+xk4VmeA3DtgJF32Oq7WK9VUIVg5taAwRr9V3jICsmJJBHXINQ\nuRUmEbZWZwKBgQC0UIZGo38NksPNGSiVyuzDRdU3Im+9cZGENB8np1AfgwRod7q0\nxZalA5SAF6UcgAP/tzwcC9WDe5JzCV+wqUT2lG5xKfKL0+l9+YUdiBSTJvvvna5J\nTVwP/qYD4SXHFiQiD8CJjQkCG78nDoQ6t0bAZxMsIBRQv7ecXctEnDnOTwKBgBbB\nLUpGfhwf2wfyCXQH/HOd2aElYaUsVABBtLexSu2RoCBQ7ZOAc0WISPaQjpAG403T\nheyTUpzb4BsSgx655x1wyCW847dBjFqkndR6VOGSsOY9DDeVHn0NnudhGYhrlibX\n0dI5G3oijS8F6UNUv3DhaQZXm/1Kqk28rzArMZPFAoGBALgDjsthcyKEL6M8v+P1\nAAS2KfFteA0FfsI+FQxxT8CfOaa8M+/VwGyeUv0ZDfd3UqR+msiLQ4xzufnnlQyp\nzQtPPXkeI+Y1JmujS4/b5P9ARpXOgaLZjZE3Qcc5073ZBMb4dUkBTpewRI0LReZB\n9XE0xX2xwCynyFnEn9//dj+c\n-----END PRIVATE KEY-----\n",
+  "client_email": "pythonbot@hurley-production.iam.gserviceaccount.com",
+  "client_id": "111330624350188816376",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/pythonbot%40hurley-production.iam.gserviceaccount.com"
+}
