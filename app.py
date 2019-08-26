@@ -17,6 +17,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 import time
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
+
+
+from io import BytesIO
+from PIL import Image
+
 credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -44,6 +49,9 @@ if 1==1:
         for employee_number in range(3):#employee_count):
             browser.get('https://solixlifeline.com')
             time.sleep(1)#-#
+	    png = browser.get_screenshot_as_png()
+	    im = Image.open(BytesIO(png))
+	    im.save('screenshot.png')
             browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
             browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
             time.sleep(1)#-#
