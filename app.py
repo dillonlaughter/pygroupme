@@ -42,37 +42,37 @@ def send_to_groupme(name,count):
         reply(name+' is now at '+str(count))
 	
 if 1==1:
-    activation = wks.cell(2,1).value
-    #wks.update_cell(2,1,'1')
-    if activation == '1':
-        employee_count = int(wks.cell(2,3).value)
-        for employee_number in range(3):#employee_count):
-            browser.get('https://solixlifeline.com')
-            time.sleep(1)#-#
-	    png = browser.get_screenshot_as_png()
-	    im = Image.open(BytesIO(png))
-	    im.save('screenshot.png')
-            browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
-            browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
-            time.sleep(1)#-#
-            browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
-            time.sleep(3)#-#
-            browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('8/23/19')
-            time.sleep(1)#-#
-            browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
-            time.sleep(5)#-#
-            complete_count = 0
-            app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
-            if app_count > 2:
-                for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
-                    if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
-                        complete_count +=1
-    ##        complete_count = 1
-            wks.update_cell(employee_number+2,5,complete_count)
-            employee_previous = wks.cell(employee_number+2,6).value
-            if employee_previous != wks.cell(employee_number+2,5).value:
-                wks.update_cell(employee_number+2,6,complete_count)
-                send_to_groupme(wks.cell(employee_number+2,4).value,complete_count)
+  	activation = wks.cell(2,1).value
+	#wks.update_cell(2,1,'1'
+	if activation == '1':
+		employee_count = int(wks.cell(2,3).value)
+		for employee_number in range(3):#employee_count):
+			browser.get('https://solixlifeline.com')
+			time.sleep(1)#-#
+			png = browser.get_screenshot_as_png()
+			im = Image.open(BytesIO(png))
+			im.save('screenshot.png')
+			browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
+			browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
+			time.sleep(1)#-#
+			browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
+			time.sleep(3)#-#
+			browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('8/23/19')
+			time.sleep(1)#-#
+			browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
+			time.sleep(5)#-#
+			complete_count = 0
+			app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
+			if app_count > 2:
+				for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
+					if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
+						complete_count +=1
+	    ##        complete_count = 1
+			wks.update_cell(employee_number+2,5,complete_count)
+			employee_previous = wks.cell(employee_number+2,6).value
+			if employee_previous != wks.cell(employee_number+2,5).value:
+				wks.update_cell(employee_number+2,6,complete_count)
+				send_to_groupme(wks.cell(employee_number+2,4).value,complete_count)
 browser.quit()
 		
 		
