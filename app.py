@@ -64,6 +64,7 @@ if 1==1:
             if employee_previous != wks.cell(employee_number+2,5).value:
                 wks.update_cell(employee_number+2,6,complete_count)
                 send_to_groupme(wks.cell(employee_number+2,4).value,complete_count)
+browser.quit()
 		
 		
 		
