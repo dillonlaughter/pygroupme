@@ -8,6 +8,68 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from flask import Flask, request
 
+#----------------from production log
+from selenium import webdriver
+#from selenium.webdriver.common.keys import Keys
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import time
+scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+
+credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
+gc = gspread.authorize(credentials)
+wks = gc.open('Hurley Enterprises Production Log').sheet1
+browser = webdriver.Chrome()
+complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
+def send_to_groupme(name,count):
+##    for gmmessage in gmlog.messages.list_all():
+##        print(gmmessage.text)
+    if count != 0:
+        reply(name+' is now at '+str(count))
+	
+if 1==1:
+    activation = wks.cell(2,1).value
+    #wks.update_cell(2,1,'1')
+    if activation == '1':
+        employee_count = int(wks.cell(2,3).value)
+        for employee_number in range(3):#employee_count):
+            browser.get('https://solixlifeline.com')
+            time.sleep(1)#-#
+            browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
+            browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
+            time.sleep(1)#-#
+            browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
+            time.sleep(3)#-#
+            browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('8/23/19')
+            time.sleep(1)#-#
+            browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
+            time.sleep(5)#-#
+            complete_count = 0
+            app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
+            if app_count > 2:
+                for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
+                    if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
+                        complete_count +=1
+    ##        complete_count = 1
+            wks.update_cell(employee_number+2,5,complete_count)
+            employee_previous = wks.cell(employee_number+2,6).value
+            if employee_previous != wks.cell(employee_number+2,5).value:
+                wks.update_cell(employee_number+2,6,complete_count)
+                send_to_groupme(wks.cell(employee_number+2,4).value,complete_count)
+		
+		
+		
+		
+		
+
+
+
+
+
+
+
+
+
 app = Flask(__name__)
 bot_id = "3f468516f8449e3c3482999b9b"
 
