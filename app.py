@@ -17,8 +17,17 @@ bot_id = "3f468516f8449e3c3482999b9b"
 def webhook():
 	# 'message' is an object that represents a single GroupMe message.
 	message = request.get_json()
-
+	msgtxt = message['text']
 	# TODO: Your bot's logic here
+	if '/set ' in msgtxt:
+		msgparts = msgtxt.split(' ')
+		emoji = msgparts[-1]
+		fullname = ' '.join(msgparts[1:len(msgparts)-1])
+		
+		# TODO: update sheets with emoji
+		
+		reply('Emoji of '+fullname+ ' set to '+emoji)
+		
 
 	return "ok", 200
 
