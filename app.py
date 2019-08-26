@@ -38,11 +38,11 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 def send_to_groupme(name,count):
 ##    for gmmessage in gmlog.messages.list_all():
 ##        print(gmmessage.text)
- 	if count != 0:
-       		reply(name+' is now at '+str(count))
+	if count != 0:
+		reply(name+' is now at '+str(count))
 	
 if 1==1:
-  	activation = wks.cell(2,1).value
+	activation = wks.cell(2,1).value
 	#wks.update_cell(2,1,'1'
 	if activation == '1':
 		employee_count = int(wks.cell(2,3).value)
