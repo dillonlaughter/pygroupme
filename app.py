@@ -10,7 +10,7 @@ from flask import Flask, request
 
 #----------------from production log
 from selenium import webdriver
-#from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.keys import Keys
 import selenium.webdriver.chrome.options
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -38,8 +38,8 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 def send_to_groupme(name,count):
 ##    for gmmessage in gmlog.messages.list_all():
 ##        print(gmmessage.text)
-    if count != 0:
-        reply(name+' is now at '+str(count))
+ 	if count != 0:
+       		reply(name+' is now at '+str(count))
 	
 if 1==1:
   	activation = wks.cell(2,1).value
