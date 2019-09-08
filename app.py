@@ -24,9 +24,9 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-console.log('##### before browser startup #####')
+print('##### before browser startup #####')
 browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-console.log('##### after browser startup #####')
+print('##### after browser startup #####')
 
 gc = gspread.authorize(credentials)
 wks = gc.open('Hurley Enterprises Production Log').sheet1
@@ -48,8 +48,8 @@ if 1==1:
                 try:
                     if wks.cell(employee_number+2,2).value == '1':
                         browser.get('https://solixlifeline.com')
-			##
-			console.log('##### Went to solix for ' + wks.cell(employee_number+2,4).value + ' #####')
+                        ##
+                        print('##### Went to solix for ' + wks.cell(employee_number+2,4).value + ' #####')
                         time.sleep(3)#-#
                         browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
                         browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
@@ -78,7 +78,7 @@ if 1==1:
                         if employee_previous != wks.cell(employee_number+2,5).value:
                             wks.update_cell(employee_number+2,6,complete_count)
                             send_to_groupme(wks.cell(employee_number+2,4).value,complete_count)
-			console.log('##### count is at '+str(complete_count)+' #####')
+			print('##### count is at '+str(complete_count)+' #####')
                 except:
                     rpeo = 6
         else:
