@@ -24,8 +24,8 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-print('##### before browser startup #####')
-browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+#print('##### before browser startup #####')
+#browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 print('##### after browser startup #####')
 
 gc = gspread.authorize(credentials)
@@ -37,7 +37,7 @@ def send_to_groupme(name,count):
     if count != 0:
         reply(name+' is now at '+str(count))
     
-if 1==1:
+if 1==0:
     try:
 ##        browser = webdriver.Chrome()
         activation = wks.cell(2,1).value
@@ -93,7 +93,7 @@ if 1==1:
             unnk = 0
         time.sleep(10)
 
-browser.quit()
+#browser.quit()
         
         
         
