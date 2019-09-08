@@ -332,7 +332,7 @@ def dundermain():
                             #print('##### count is at '+str(complete_count)+' #####')
                             try:
                                 browser.quir()
-                            else:
+                            except:
                                 rpeo = 5
                     except:
                         rpeo = 6
