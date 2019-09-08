@@ -15,7 +15,6 @@ import selenium.webdriver.chrome.options
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import time
-import re
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
@@ -34,7 +33,11 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 
 browser = webdriver.Chrome()
 
+'''
 
+######### RID SELF OF XPATH #########
+
+'''
 
 
 
@@ -148,6 +151,7 @@ def send_to_groupme(name,count):
         reply(name+' is now at '+str(count))
         
 def dundermain():
+    a=time.time()
 ##    print('##### before browser startup #####')
 ##    browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 ##    print('##### after browser startup #####')
@@ -263,20 +267,20 @@ def dundermain():
     quitvar = 0    
     if 1==1:
         #reply('test')
-
+        #try:
         arr_ppl = get_data()
-
+        
 ##        browser = webdriver.Chrome()
         activation = arr_acti_name[0]
         #wks.update_cell(2,1,'1')
         index = next_person(arr_ppl)
         print(1)
-
+        
         if activation == '1':
-
+            
             employee_count = int(arr_acti_name[1])
             print(3)
-
+        
 
             print(4)
             print(arr_ppl)
@@ -304,31 +308,34 @@ def dundermain():
                 browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
                 time.sleep(2.5)#-#
                 complete_count = 0
-                app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
-                if app_count > 0:
-                    for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
-                        if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
-                            complete_count = int(complete_count) + 1
-##                complete_count = 1
+                ind=0
+                while True:
+                    try:   
+                        text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
+                        if text in complete_messages:
+                            complete_count+=1
+                        ind+=1
+                    except:
+                        break
                 print(complete_count)
                 arr_ppl[index][2] = complete_count
             arr_ppl[index][7] = str(time.localtime().tm_hour)+'.'+str(time.localtime().tm_min)+'.'+str(time.localtime().tm_sec)
                 #wks.update_cell(employee_number+2,5,complete_count)
-                    #employee_previous = wks.cell(employee_number+2,6).value
-                    #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
-                    #print('type: '+str(type(arr_ppl[employee_number][3]))+' : '+str(arr_ppl[employee_number][3])+' :type: '+str(type(arr_ppl[employee_number][2]))+' : '+str(arr_ppl[employee_number][2]))
-                    #print('##### count is at '+str(complete_count)+' #####')
+                #employee_previous = wks.cell(employee_number+2,6).value
+                #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
+                #print('type: '+str(type(arr_ppl[employee_number][3]))+' : '+str(arr_ppl[employee_number][3])+' :type: '+str(type(arr_ppl[employee_number][2]))+' : '+str(arr_ppl[employee_number][2]))
+                #print('##### count is at '+str(complete_count)+' #####')
 ##                            try:
 ##                                browser.quir()
 ##                            except:
 ##                                rpeo = 5
 ##            except:
 ##                    rpeo = 6
-            
-#             else:
-#                 time.sleep(10)
-#         except:
-#             oisdjf=0
+##            
+##            else:
+##                time.sleep(10)
+##        except:
+##            oisdjf=0
     ##t1_ = time.process_time()
     ##print(t1_-t1_s)
         print(5)
@@ -351,6 +358,7 @@ def dundermain():
         print(7)
 ##        print(arr_ppl)
         send_data(arr_ppl)
+    print('time: ',time.time()-a)
 
 def next_person(data):
     ### sorts arr_ppl to get the smallest date, returns the arr_ppl[index]
