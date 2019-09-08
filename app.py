@@ -20,10 +20,10 @@ scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/aut
 credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-chrome_options = webdriver.ChromeOptions()
-chrome_options.binary_location = GOOGLE_CHROME_BIN
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
+# chrome_options = webdriver.ChromeOptions()
+# chrome_options.binary_location = GOOGLE_CHROME_BIN
+# chrome_options.add_argument('--disable-gpu')
+# chrome_options.add_argument('--no-sandbox')
 
 gc = gspread.authorize(credentials)
 wks = gc.open('Hurley Enterprises Production Log').sheet1
