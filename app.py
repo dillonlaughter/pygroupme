@@ -254,9 +254,13 @@ def webhook():
         emoji = msgparts[-1]
         fullname = ' '.join(msgparts[1:len(msgparts)-1])
         print('##'+fullname+'##')
+        try:
+            print(arr_ppl[0][1])
+        except:
+            print('arr_ppl not found')
         hlength = '0'
         # TODO: update sheets with emoji
-        hcount = int(wks.cell(2,3).value)
+        hcount = int(wks.cell(2,2).value)
         for hname in range(hcount):
             if wks.cell(hname+2,4).value == fullname:
                 wks.update_cell(hname+2,7,emoji)
