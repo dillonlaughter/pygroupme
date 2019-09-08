@@ -35,7 +35,7 @@ def send_to_groupme(name,count):
 ##    for gmmessage in gmlog.messages.list_all():
 ##        print(gmmessage.text)
     if count != 0:
-        print(name+ '  '+str(count))
+        print(name+ ' gm '+str(count))
         reply(name+' is now at '+str(count))
 
 if 1==0:
@@ -192,11 +192,11 @@ if 1==1:
                         #wks.update_cell(employee_number+2,5,complete_count)
                         #employee_previous = wks.cell(employee_number+2,6).value
                         #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
-                        print('type: '+type(arr_ppl[employee_number][3])+' : '+str(arr_ppl[employee_number][3])+' :type: '+type(arr_ppl[employee_number][2])+' : '+arr_ppl[employee_number][2])
-                        if arr_ppl[employee_number][3] != arr_ppl[employee_number][2]:
+                        print('type: '+str(type(arr_ppl[employee_number][3]))+' : '+str(arr_ppl[employee_number][3])+' :type: '+str(type(arr_ppl[employee_number][2]))+' : '+str(arr_ppl[employee_number][2]))
+                        if arr_ppl[employee_number][3] != str(arr_ppl[employee_number][2]):
                             arr_ppl[employee_number][3] = complete_count
                             #wks.update_cell(employee_number+2,6,complete_count)
-                            send_to_groupme(arr_ppl[employee_number][1],complete_count)
+                            send_to_groupme(str(arr_ppl[employee_number][1]),complete_count)
                         print('##### count is at '+str(complete_count)+' #####')
                 except:
                     rpeo = 6
