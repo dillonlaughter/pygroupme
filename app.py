@@ -263,57 +263,57 @@ def dundermain():
     quitvar = 0    
     if 1==1:
         #reply('test')
-        try:
-            arr_ppl = get_data()
-            
-    ##        browser = webdriver.Chrome()
-            activation = arr_acti_name[0]
-            #wks.update_cell(2,1,'1')
-            index = next_person(arr_ppl)
-            print(1)
-            
-            if activation == '1':
-                
-                employee_count = int(arr_acti_name[1])
-                print(3)
-            
 
-                print(4)
-                print(arr_ppl)
-                if arr_ppl[index][0] == '1':
-                    print(2)
-                    #browser = webdriver.Chrome()
-                    browser.get('https://solixlifeline.com')
-                    ##
-                    print(2)
-                    print('##### Went to solix for ' + arr_ppl[index][1] + ' #####')
-                    #time.sleep(3)#-#
-                    browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(arr_ppl[index][5])
-                    browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(arr_ppl[index][6])
-                    #time.sleep(3)#-#
-                    browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
-                    time.sleep(3)#-#
-                    try:
-                        if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
-                            arr_ppl[index][0] = '0'
-                    except:
-                        retd = 5
-                    ################ set function to curretn date
-                    browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('9/6/19')
-                    #time.sleep(3)#-#
-                    browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
-                    time.sleep(2.5)#-#
-                    complete_count = 0
-                    app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
-                    if app_count > 0:
-                        for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
-                            if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
-                                complete_count = int(complete_count) + 1
-    ##                complete_count = 1
-                    print(complete_count)
-                    arr_ppl[index][2] = complete_count
-                arr_ppl[index][7] = str(time.localtime().tm_hour)+'.'+str(time.localtime().tm_min)+'.'+str(time.localtime().tm_sec)
-                    #wks.update_cell(employee_number+2,5,complete_count)
+        arr_ppl = get_data()
+
+##        browser = webdriver.Chrome()
+        activation = arr_acti_name[0]
+        #wks.update_cell(2,1,'1')
+        index = next_person(arr_ppl)
+        print(1)
+
+        if activation == '1':
+
+            employee_count = int(arr_acti_name[1])
+            print(3)
+
+
+            print(4)
+            print(arr_ppl)
+            if arr_ppl[index][0] == '1':
+                print(2)
+                #browser = webdriver.Chrome()
+                browser.get('https://solixlifeline.com')
+                ##
+                print(2)
+                print('##### Went to solix for ' + arr_ppl[index][1] + ' #####')
+                #time.sleep(3)#-#
+                browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(arr_ppl[index][5])
+                browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(arr_ppl[index][6])
+                #time.sleep(3)#-#
+                browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
+                time.sleep(3)#-#
+                try:
+                    if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
+                        arr_ppl[index][0] = '0'
+                except:
+                    retd = 5
+                ################ set function to curretn date
+                browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('9/6/19')
+                #time.sleep(3)#-#
+                browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
+                time.sleep(2.5)#-#
+                complete_count = 0
+                app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
+                if app_count > 0:
+                    for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
+                        if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
+                            complete_count = int(complete_count) + 1
+##                complete_count = 1
+                print(complete_count)
+                arr_ppl[index][2] = complete_count
+            arr_ppl[index][7] = str(time.localtime().tm_hour)+'.'+str(time.localtime().tm_min)+'.'+str(time.localtime().tm_sec)
+                #wks.update_cell(employee_number+2,5,complete_count)
                     #employee_previous = wks.cell(employee_number+2,6).value
                     #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
                     #print('type: '+str(type(arr_ppl[employee_number][3]))+' : '+str(arr_ppl[employee_number][3])+' :type: '+str(type(arr_ppl[employee_number][2]))+' : '+str(arr_ppl[employee_number][2]))
@@ -325,10 +325,10 @@ def dundermain():
 ##            except:
 ##                    rpeo = 6
             
-            else:
-                time.sleep(10)
-        except:
-            oisdjf=0
+#             else:
+#                 time.sleep(10)
+#         except:
+#             oisdjf=0
     ##t1_ = time.process_time()
     ##print(t1_-t1_s)
         print(5)
