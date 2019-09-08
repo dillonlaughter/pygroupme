@@ -322,7 +322,7 @@ def dundermain():
                     arr_ppl[index][2] = complete_count
                 except:
                     oid=0
-            arr_ppl[index][7] = str(time.localtime().tm_hour)+'.'+str(time.localtime().tm_min)+'.'+str(time.localtime().tm_sec)
+            arr_ppl[index][7] = ('0'+str(time.localtime().tm_hour))[-2:]+'.'+('0'+str(time.localtime().tm_min))[-2:]+'.'+('0'+str(time.localtime().tm_sec))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
                 #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
