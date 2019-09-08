@@ -1,4 +1,4 @@
-# RESOURCE: http://www.apnorton.com/blog/2017/02/28/How-I-wrote-a-Groupme-Chatbot-in-24-hours/
+# RESOURCE: http://www.apnorton.com/blog/2017/02/28/How-I-wrote-a-Groupme-Chatbot-in-24-hours//
 
 
 # IMPORTS
@@ -240,7 +240,7 @@ except:
 
 
 app = Flask(__name__)
-bot_id = "3f468516f8449e3c3482999b9b"
+bot_id = "0e32f0e6e58f4d035d908b18a1"
 
 # Called whenever the app's callback URL receives a POST request
 # That'll happen every time a message is sent in the group
