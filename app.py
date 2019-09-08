@@ -1,4 +1,4 @@
-# RESOURCE: http://www.apnorton.com/blog/2017/02/28/How-I-wrote-a-Groupme-Chatbot-in-24-hours/
+# RESOURCE: http://www.apnorton.com/blog/2017/02/28/How-I-wrote-a-Groupme-Chatbot-in-24-hours//
 
 
 # IMPORTS
@@ -191,7 +191,8 @@ if 1==1:
                         arr_ppl[employee_number][2] = complete_count
                         #wks.update_cell(employee_number+2,5,complete_count)
                         #employee_previous = wks.cell(employee_number+2,6).value
-                        print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
+                        #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
+                        print('type: '+type(arr_ppl[employee_number][3])+' : '+str(arr_ppl[employee_number][3])+' :type: '+type(arr_ppl[employee_number][2])+' : '+arr_ppl[employee_number][2])
                         if arr_ppl[employee_number][3] != arr_ppl[employee_number][2]:
                             arr_ppl[employee_number][3] = complete_count
                             #wks.update_cell(employee_number+2,6,complete_count)
@@ -263,15 +264,16 @@ def webhook():
         hcount = int(wks.cell(2,2).value)
         for hname in range(hcount):
             if arr_ppl[hname][1] == fullname:
-                #wks.update_cell(hname+2,7,emoji)
                 arr_ppl[hname][4] = emoji
                 hlength = hname
-        
-        reply('Emoji of '+fullname+ ' set to '+emoji)
+
         arr_ppl = [[str(arr_ppl[i][j]) for j in range(len(arr_ppl[i]))] for i in range(len(arr_ppl))]
         temp = '|'.join(['~'.join(x) for x in arr_ppl])
         #print(temp)
         wks.update_cell(1,11, temp)
+        reply('Emoji of '+fullname+ ' set to '+emoji)
+        
+        
 
     return "ok", 200
 
