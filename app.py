@@ -37,7 +37,7 @@ def send_to_groupme(name,count):
     if count != 0:
         reply(name+' is now at '+str(count))
 
-if 1==1:
+if 1==0:
     try:
         print('going to solix')
         browser.get('https://solixlifeline.com')
@@ -141,12 +141,15 @@ if 1==1:
         print('P unnat quit')
         browser.quit()
         print('E unnat quit')
-    
-if 1==0:
+
+        
+quitvar = 0    
+if 1==1:
     try:
 ##        browser = webdriver.Chrome()
         activation = wks.cell(2,1).value
         #wks.update_cell(2,1,'1')
+        
         if activation == '1':
             employee_count = int(wks.cell(2,3).value)
             for employee_number in range(employee_count):
@@ -155,12 +158,12 @@ if 1==0:
                         browser.get('https://solixlifeline.com')
                         ##
                         print('##### Went to solix for ' + wks.cell(employee_number+2,4).value + ' #####')
-                        time.sleep(3)#-#
+                        #time.sleep(3)#-#
                         browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
                         browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
-                        time.sleep(3)#-#
+                        #time.sleep(3)#-#
                         browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
-                        time.sleep(5)#-#
+                        time.sleep(3)#-#
                         try:
                             if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
                                 wks.update_cell(employee_number+2,2,str(0))
@@ -168,9 +171,9 @@ if 1==0:
                             retd = 5
                         ################ set function to curretn date
                         browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('9/6/19')
-                        time.sleep(3)#-#
+                        #time.sleep(3)#-#
                         browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
-                        time.sleep(10)#-#
+                        time.sleep(3)#-#
                         complete_count = 0
                         app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
                         if app_count > 0:
@@ -191,14 +194,19 @@ if 1==0:
 ##t1_ = time.process_time()
 ##print(t1_-t1_s)
         browser.quit()
+        quitvar = 1
     except:
         try:
-            browser.quit()
+            if quitvar == 0:
+                browser.quit()
+                quitvar = 1
         except:
             unnk = 0
         time.sleep(10)
+if quitvar == 0:
+    browser.quit()
+    quitvar = 1
 
-#browser.quit()
         
         
         
