@@ -360,6 +360,7 @@ def dundermain():
                 arr_ppl[person][3] = arr_ppl[person][2]
                 #wks.update_cell(employee_number+2,6,complete_count)
                 print((arr_ppl[person][1],arr_ppl[person][2]))
+                time.sleep(1)
                 send_to_groupme(arr_ppl[person][1],arr_ppl[person][2])
         arr_ppl = [[str(arr_ppl[i][j]) for j in range(len(arr_ppl[i]))] for i in range(len(arr_ppl))]
         temp = '|'.join(['~'.join(x) for x in arr_ppl])
