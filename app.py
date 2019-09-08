@@ -256,6 +256,8 @@ def webhook():
         print('##'+fullname+'##')
         temp = wks.cell(1,10).value
         arr_ppl = temp.split('|')
+        for i in range(len(arr_ppl)):
+            arr_ppl[i] = arr_ppl[i].split('~')
         hlength = '0'
         # TODO: update sheets with emoji
         hcount = int(wks.cell(2,2).value)
