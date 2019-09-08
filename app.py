@@ -35,6 +35,7 @@ def send_to_groupme(name,count):
 ##    for gmmessage in gmlog.messages.list_all():
 ##        print(gmmessage.text)
     if count != 0:
+        print(name+ '  '+str(count))
         reply(name+' is now at '+str(count))
 
 if 1==0:
@@ -142,31 +143,36 @@ if 1==0:
         browser.quit()
         print('E unnat quit')
 
-        
+temp = wks.cell(3,1).value
+arr_acti_name = temp.split('|')
 quitvar = 0    
 if 1==1:
     try:
 ##        browser = webdriver.Chrome()
-        activation = wks.cell(2,1).value
+        activation = arr_acti_name[0]
         #wks.update_cell(2,1,'1')
+        temp = wks.cell(1,10).value
+        arr_ppl = temp.split('|')
+        for i in range(len(arr_ppl)):
+            arr_ppl[i] = arr_ppl[i].split('~')
         
         if activation == '1':
-            employee_count = int(wks.cell(2,3).value)
+            employee_count = int(arr_acti_name[1])
             for employee_number in range(employee_count):
                 try:
-                    if wks.cell(employee_number+2,2).value == '1':
+                    if arr_ppl[employee_number][0] == '1':
                         browser.get('https://solixlifeline.com')
                         ##
-                        print('##### Went to solix for ' + wks.cell(employee_number+2,4).value + ' #####')
+                        print('##### Went to solix for ' + arr_ppl[employee_number][1] + ' #####')
                         #time.sleep(3)#-#
-                        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(wks.cell(employee_number+2,8).value)
-                        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(wks.cell(employee_number+2,9).value)
+                        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(arr_ppl[employee_number][5])
+                        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(arr_ppl[employee_number][6])
                         #time.sleep(3)#-#
                         browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
                         time.sleep(3)#-#
                         try:
                             if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
-                                wks.update_cell(employee_number+2,2,str(0))
+                                arr_ppl[employee_number][0] = '0'
                         except:
                             retd = 5
                         ################ set function to curretn date
@@ -181,11 +187,15 @@ if 1==1:
                                 if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
                                     complete_count = int(complete_count) + 1
         ##                complete_count = 1
-                        wks.update_cell(employee_number+2,5,complete_count)
-                        employee_previous = wks.cell(employee_number+2,6).value
-                        if employee_previous != wks.cell(employee_number+2,5).value:
-                            wks.update_cell(employee_number+2,6,complete_count)
-                            send_to_groupme(wks.cell(employee_number+2,4).value,complete_count)
+                        print(complete_count)
+                        arr_ppl[employee_number][2] = complete_count
+                        #wks.update_cell(employee_number+2,5,complete_count)
+                        #employee_previous = wks.cell(employee_number+2,6).value
+                        print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
+                        if arr_ppl[employee_number][3] != arr_ppl[employee_number][2]:
+                            arr_ppl[employee_number][3] = complete_count
+                            #wks.update_cell(employee_number+2,6,complete_count)
+                            send_to_groupme(arr_ppl[employee_number][1],complete_count)
                         print('##### count is at '+str(complete_count)+' #####')
                 except:
                     rpeo = 6
@@ -193,8 +203,10 @@ if 1==1:
             time.sleep(10)
 ##t1_ = time.process_time()
 ##print(t1_-t1_s)
-        browser.quit()
-        quitvar = 1
+        try:
+            browser.quit()
+        except:
+            doha=1
     except:
         try:
             if quitvar == 0:
@@ -203,9 +215,14 @@ if 1==1:
         except:
             unnk = 0
         time.sleep(10)
-if quitvar == 0:
+    arr_ppl = [[str(arr_ppl[i][j]) for j in range(len(arr_ppl[i]))] for i in range(len(arr_ppl))]
+    temp = '|'.join(['~'.join(x) for x in arr_ppl])
+    #print(temp)
+    wks.update_cell(1,11, temp)
+try:
     browser.quit()
-    quitvar = 1
+except:
+    doha=1
 
         
         
