@@ -24,8 +24,8 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-#print('##### before browser startup #####')
-#browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+print('##### before browser startup #####')
+browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 print('##### after browser startup #####')
 
 gc = gspread.authorize(credentials)
@@ -36,6 +36,30 @@ def send_to_groupme(name,count):
 ##        print(gmmessage.text)
     if count != 0:
         reply(name+' is now at '+str(count))
+
+if 1==1:
+    try:
+        browser.get('https://solixlifeline.com')
+        print('Printing header')
+        print(browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_lblHeader').get_attribute('innerText'))
+        print('Printed header')
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys('pres0704')
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys('Laughter@2')
+        print('P entered info')
+        print(browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').get_attribute('value'))
+        print(browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').get_attribute('value'))
+        print('E entered info')
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
+        print('P new Header')
+        print(browser.find_element_by_id('ctl00_lblModuleheading').get_attribute('innerText'))
+        print('E new header')
+        print('P nat quit')
+        browser.quit()
+        print('E nat quit')
+    except:
+        print('P unnat quit')
+        browser.quit()
+        print('E unnat quit')
     
 if 1==0:
     try:
@@ -130,8 +154,9 @@ def webhook():
         for hname in range(hcount):
             if wks.cell(hname+2,4).value == fullname:
                 wks.update_cell(hname+2,7,emoji)
+                hlength = hname
         
-        reply('Emoji of '+fullname+ ' set to '+emoji)
+        reply('Emoji of '+fullname+ ' set to '+wks.cell(hlength+2,7).value)
         
 
     return "ok", 200
