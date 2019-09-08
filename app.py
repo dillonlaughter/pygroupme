@@ -48,28 +48,7 @@ def webhook():
     # 'message' is an object that represents a single GroupMe message.
     
     # TODO: Your bot's logic here
-    import os
-    import json
-    from urllib.parse import urlencode
-    from urllib.request import Request, urlopen
-    from flask import Flask, request
 
-    #----------------from production log
-    from selenium import webdriver
-    #from selenium.webdriver.common.keys import Keys
-    import selenium.webdriver.chrome.options
-    import gspread
-    from oauth2client.service_account import ServiceAccountCredentials
-    import time
-    scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
-    GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
-    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = GOOGLE_CHROME_BIN
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--no-sandbox')
 
     gc = gspread.authorize(credentials)
     wks = gc.open('Hurley Enterprises Production Log').sheet1
@@ -166,9 +145,9 @@ def send_to_groupme(name,count):
         reply(name+' is now at '+str(count))
         
 def dundermain():
-##    print('##### before browser startup #####')
-##    browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-##    print('##### after browser startup #####')
+    print('##### before browser startup #####')
+    browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+    print('##### after browser startup #####')
 
 
     if 1==0:
@@ -296,7 +275,7 @@ def dundermain():
                 for employee_number in range(employee_count):
                     try:
                         if arr_ppl[employee_number][0] == '1':
-                            browser = webdriver.Chrome()
+                            #browser = webdriver.Chrome()
                             browser.get('https://solixlifeline.com')
                             ##
                             print('##### Went to solix for ' + arr_ppl[employee_number][1] + ' #####')
@@ -330,10 +309,10 @@ def dundermain():
                             #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
                             #print('type: '+str(type(arr_ppl[employee_number][3]))+' : '+str(arr_ppl[employee_number][3])+' :type: '+str(type(arr_ppl[employee_number][2]))+' : '+str(arr_ppl[employee_number][2]))
                             #print('##### count is at '+str(complete_count)+' #####')
-                            try:
-                                browser.quir()
-                            except:
-                                rpeo = 5
+##                            try:
+##                                browser.quir()
+##                            except:
+##                                rpeo = 5
                     except:
                         rpeo = 6
                 
