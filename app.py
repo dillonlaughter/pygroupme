@@ -24,12 +24,10 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-        
-        
-        
-        
-        
 
+gc = gspread.authorize(credentials)
+wks = gc.open('Hurley Enterprises Production Log').sheet1
+complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
 
 
 
@@ -49,7 +47,7 @@ def webhook():
     message = request.get_json()
     msgtxt = message['text']
     # TODO: Your bot's logic here
-    if '/run ' in msgtxt:
+    if '/run' in msgtxt:
         dundermain()
     if '/set ' in msgtxt:
         msgparts = msgtxt.split(' ')
@@ -138,10 +136,6 @@ def dundermain():
     print('##### before browser startup #####')
     browser = webdriver.Chrome()#executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
     print('##### after browser startup #####')
-
-    gc = gspread.authorize(credentials)
-    wks = gc.open('Hurley Enterprises Production Log').sheet1
-    complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
 
 
     if 1==0:
