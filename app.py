@@ -326,11 +326,6 @@ def dundermain():
                             #wks.update_cell(employee_number+2,5,complete_count)
                             #employee_previous = wks.cell(employee_number+2,6).value
                             #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
-                            if str(arr_ppl[person][2]) != str(arr_ppl[person][3]):
-                                arr_ppl[person][3] = arr_ppl[person][2]
-                                #wks.update_cell(employee_number+2,6,complete_count)
-                                print((arr_ppl[person][1],arr_ppl[person][2]))
-                                send_to_groupme(arr_ppl[person][1],arr_ppl[person][2])
                             #print('type: '+str(type(arr_ppl[employee_number][3]))+' : '+str(arr_ppl[employee_number][3])+' :type: '+str(type(arr_ppl[employee_number][2]))+' : '+str(arr_ppl[employee_number][2]))
                             #print('##### count is at '+str(complete_count)+' #####')
                     except:
@@ -356,16 +351,20 @@ def dundermain():
         #print(temp)
         wks.update_cell(1,11, temp)
 
-##        temp = wks.cell(1,10).value
-##        arr_ppl = temp.split('|')
-##        for i in range(len(arr_ppl)):
-##            arr_ppl[i] = arr_ppl[i].split('~')
-##        for person in range(len(arr_ppl)):
-##            
-##        arr_ppl = [[str(arr_ppl[i][j]) for j in range(len(arr_ppl[i]))] for i in range(len(arr_ppl))]
-##        temp = '|'.join(['~'.join(x) for x in arr_ppl])
-##        #print(temp)
-##        wks.update_cell(1,11, temp)
+        temp = wks.cell(1,10).value
+        arr_ppl = temp.split('|')
+        for i in range(len(arr_ppl)):
+            arr_ppl[i] = arr_ppl[i].split('~')
+        for person in range(len(arr_ppl)):
+            if str(arr_ppl[person][2]) != str(arr_ppl[person][3]):
+                arr_ppl[person][3] = arr_ppl[person][2]
+                #wks.update_cell(employee_number+2,6,complete_count)
+                print((arr_ppl[person][1],arr_ppl[person][2]))
+                send_to_groupme(arr_ppl[person][1],arr_ppl[person][2])
+        arr_ppl = [[str(arr_ppl[i][j]) for j in range(len(arr_ppl[i]))] for i in range(len(arr_ppl))]
+        temp = '|'.join(['~'.join(x) for x in arr_ppl])
+        #print(temp)
+        wks.update_cell(1,11, temp)
     try:
         browser.quit()
     except:
