@@ -46,8 +46,7 @@ bot_id = "0e32f0e6e58f4d035d908b18a1"
 
 def webhook():
     # 'message' is an object that represents a single GroupMe message.
-    message = request.get_json()
-    msgtxt = message['text']
+    
     # TODO: Your bot's logic here
     import os
     import json
@@ -75,6 +74,12 @@ def webhook():
     gc = gspread.authorize(credentials)
     wks = gc.open('Hurley Enterprises Production Log').sheet1
     complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
+
+    message = request.get_json()
+    msgtxt = message['text']
+
+
+    
     if '/run' in msgtxt:
         dundermain()
     if '/set ' in msgtxt:
