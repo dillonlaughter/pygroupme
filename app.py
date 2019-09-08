@@ -39,6 +39,7 @@ def send_to_groupme(name,count):
 
 if 1==1:
     try:
+        print('going to solix')
         browser.get('https://solixlifeline.com')
         print('Printing header')
         print(browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_lblHeader').get_attribute('innerText'))
@@ -53,6 +54,67 @@ if 1==1:
         print('P new Header')
         print(browser.find_element_by_id('ctl00_lblModuleheading').get_attribute('innerText'))
         print('E new header')
+        print('P set date')
+        browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('9/6/19')
+        print(browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value'))
+        print('E set date')
+        print('P search')
+        browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
+        print('E search')
+        print('P app count')
+        app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
+        print(str(app_count))
+        print('E app count')
+        print('P get complete')
+        complete_count = 0
+        for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
+            if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
+                complete_count = int(complete_count) + 1
+        print('E get complete')
+        print('P complete count')
+        print(complete_count)
+        print('E complete count')
+        
+        print('Next Person')
+        print('Next Person')
+        print('Next Person')
+        
+        print('Going to solix')
+        browser.get('https://solixlifeline.com')
+        print('Printing header')
+        print(browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_lblHeader').get_attribute('innerText'))
+        print('Printed header')
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys('pres0715')
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys('Adame@33')
+        print('P entered info')
+        print(browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').get_attribute('value'))
+        print(browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').get_attribute('value'))
+        print('E entered info')
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
+        print('P new Header')
+        print(browser.find_element_by_id('ctl00_lblModuleheading').get_attribute('innerText'))
+        print('E new header')
+        print('P set date')
+        browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('9/6/19')
+        print(browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value'))
+        print('E set date')
+        print('P search')
+        browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
+        print('E search')
+        print('P app count')
+        app_count = int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))
+        print(str(app_count))
+        print('E app count')
+        print('P get complete')
+        complete_count = 0
+        for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
+            if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
+                complete_count = int(complete_count) + 1
+        print('E get complete')
+        print('P complete count')
+        print(complete_count)
+        print('E complete count')
+        
         print('P nat quit')
         browser.quit()
         print('E nat quit')
@@ -148,7 +210,7 @@ def webhook():
         emoji = msgparts[-1]
         fullname = ' '.join(msgparts[1:len(msgparts)-1])
         print('##'+fullname+'##')
-        
+        hlength = '0'
         # TODO: update sheets with emoji
         hcount = int(wks.cell(2,3).value)
         for hname in range(hcount):
