@@ -42,11 +42,39 @@ bot_id = "0e32f0e6e58f4d035d908b18a1"
 # Called whenever the app's callback URL receives a POST request
 # That'll happen every time a message is sent in the group
 @app.route('/', methods=['POST'])
+
+
 def webhook():
     # 'message' is an object that represents a single GroupMe message.
     message = request.get_json()
     msgtxt = message['text']
     # TODO: Your bot's logic here
+    import os
+    import json
+    from urllib.parse import urlencode
+    from urllib.request import Request, urlopen
+    from flask import Flask, request
+
+    #----------------from production log
+    from selenium import webdriver
+    #from selenium.webdriver.common.keys import Keys
+    import selenium.webdriver.chrome.options
+    import gspread
+    from oauth2client.service_account import ServiceAccountCredentials
+    import time
+    scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
+
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
+    GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
+    CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = GOOGLE_CHROME_BIN
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+
+    gc = gspread.authorize(credentials)
+    wks = gc.open('Hurley Enterprises Production Log').sheet1
+    complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
     if '/run' in msgtxt:
         dundermain()
     if '/set ' in msgtxt:
