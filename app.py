@@ -70,7 +70,8 @@ def webhook():
 
     
     if '/run' in msgtxt:
-        dundermain()
+        t1.start(block=True)
+#         dundermain()
     if '/set ' in msgtxt:
         msgparts = msgtxt.split(' ')
         emoji = msgparts[-1]
