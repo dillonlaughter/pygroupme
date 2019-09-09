@@ -7,6 +7,7 @@ import json
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from flask import Flask, request
+from timeloop import Timeloop
 
 #----------------from production log
 from selenium import webdriver
@@ -15,15 +16,16 @@ import selenium.webdriver.chrome.options
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import time
+from datetime import timedelta
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
 GOOGLE_CHROME_BIN = '/app/.apt/usr/bin/google-chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
-# chrome_options = webdriver.ChromeOptions()
-# chrome_options.binary_location = GOOGLE_CHROME_BIN
-# chrome_options.add_argument('--disable-gpu')
-# chrome_options.add_argument('--no-sandbox')
+chrome_options = webdriver.ChromeOptions()
+chrome_options.binary_location = GOOGLE_CHROME_BIN
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
 
 gc = gspread.authorize(credentials)
 wks = gc.open('Hurley Enterprises Production Log').sheet1
@@ -32,6 +34,8 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 
 
 browser = webdriver.Chrome()
+
+t1 = Timeloop()
 
 '''
 
@@ -66,8 +70,7 @@ def webhook():
 
     
     if '/run' in msgtxt:
-        for _ in range(10):
-            dundermain()
+        dundermain()
     if '/set ' in msgtxt:
         msgparts = msgtxt.split(' ')
         emoji = msgparts[-1]
@@ -389,3 +392,10 @@ def send_data(arr_ppl):
     wks.update_cell(1,12, temp)
 
     return
+
+@t1.job(interval = timedelta(seconds=30))
+def sample_30sec():
+    dundermain()
+
+if __name__ == '__main__':
+    t1.start(block=True)
