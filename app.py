@@ -398,4 +398,5 @@ def sample_30sec():
     dundermain()
 
 if __name__ == '__main__':
+    print('__main__')
     t1.start(block=True)
