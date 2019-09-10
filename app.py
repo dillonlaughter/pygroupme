@@ -45,9 +45,7 @@ sched = BlockingScheduler()
 
 '''
 
-@sched.scheduled_job('interval', seconds=30)
-def timed_job():
-    dundermain()
+
 
 
 app = Flask(__name__)
@@ -400,4 +398,8 @@ def send_data(arr_ppl):
 
     return
 
+
+@sched.scheduled_job('interval', seconds=30)
+def timed_job():
+    dundermain()
 
