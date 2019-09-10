@@ -252,7 +252,8 @@ def dundermain():
             complete_count = 0
             for each_app in range(int(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00"]/tbody').get_attribute('childElementCount'))):
                 if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[7]').get_attribute('innerText') in complete_messages):
-                    complete_count = int(complete_count) + 1
+                    if(browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(each_app)+'"]/td[8]').get_attribute('innerText') == ""):
+                        complete_count = int(complete_count) + 1
             print('E get complete')
             print('P complete count')
             print(complete_count)
@@ -318,7 +319,8 @@ def dundermain():
                     while True:
                         try:   
                             text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
-                            if text in complete_messages:
+                            denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
+                            if text in complete_messages and denial == '':
                                 complete_count+=1
                             ind+=1
                         except:
