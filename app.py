@@ -7,7 +7,9 @@ import json
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from flask import Flask, request
-from timeloop import Timeloop
+from apscheduler.schedulers.blocking import BlockingScheduler
+
+
 
 #----------------from production log
 from selenium import webdriver
@@ -35,7 +37,7 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 
 browser = webdriver.Chrome()
 
-t1 = Timeloop()
+sched = BlockingScheduler()
 
 '''
 
@@ -43,7 +45,9 @@ t1 = Timeloop()
 
 '''
 
-
+@sched.scheduled_job('interval', seconds=30)
+def timed_job():
+    dundermain()
 
 
 app = Flask(__name__)
@@ -70,7 +74,7 @@ def webhook():
 
     
     if '/run' in msgtxt:
-        t1.start(block=True)
+        sched.start()
 #         dundermain()
     if '/set ' in msgtxt:
         msgparts = msgtxt.split(' ')
@@ -400,6 +404,3 @@ def send_data(arr_ppl):
 def sample_30sec():
     dundermain()
 
-if __name__ == '__main__':
-    print('__main__')
-    t1.start(block=True)
