@@ -400,7 +400,4 @@ def send_data(arr_ppl):
 
     return
 
-@t1.job(interval = timedelta(seconds=30))
-def sample_30sec():
-    dundermain()
 
