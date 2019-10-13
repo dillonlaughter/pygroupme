@@ -312,7 +312,7 @@ def dundermain():
                     except:
                         retd = 5
                     ################ set function to curretn date
-                    browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('9/6/19')
+                    browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('10/12/19')
                     #time.sleep(3)#-#
                     browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
                     time.sleep(2.5)#-#
@@ -371,7 +371,7 @@ def dundermain():
 ##        print(arr_ppl)
         send_data(arr_ppl)
     print('time: ',time.time()-a)
-    return
+    replt('/run')
 
 def next_person(data):
     ### sorts arr_ppl to get the smallest date, returns the arr_ppl[index]
@@ -400,7 +400,7 @@ def send_data(arr_ppl):
     return
 
 
-@sched.scheduled_job('interval', seconds=15)
+@sched.scheduled_job('interval', seconds=30)
 def timed_job():
     dundermain()
 
