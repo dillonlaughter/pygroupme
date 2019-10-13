@@ -162,7 +162,7 @@ def send_to_groupme(name,count):
 ##        print(gmmessage.text)
     if int(count) != 0:
         print(name+ ' gm '+str(count))
-        gmlog(text=name+' is now at '+str(count))
+        gmlog.post(text=name+' is now at '+str(count))
         
 def dundermain():
     a=time.time()
