@@ -338,7 +338,7 @@ def dundermain():
     reply('/run')
     return 
 
-def subroutine_in_middle():
+def subroutine_in_middle(browser,arr_ppl,index):
     print('#1 #1 #0 @prepare for fail')
     if 1==1: #prepare for fail turn from "try:"
         print('#1 #1 #1 @before browser init')
