@@ -282,23 +282,23 @@ def dundermain():
         activation = arr_acti_name[0]
         #wks.update_cell(2,1,'1')
         index = next_person(arr_ppl)
-        print(1)
+        print('indexed next person')
         
         if activation == '1':
             
             employee_count = int(arr_acti_name[1])
-            print(3)
+            print('get employee count')
         
 
-            print(4)
+            print('printing arr_ppl')
             print(arr_ppl)
             if arr_ppl[index][0] == '1':
                 try:
-                    print(2)
+                    print('before browser init')
                     #browser = webdriver.Chrome()
                     browser.get('https://solixlifeline.com')
                     ##
-                    print(2)
+                    print('after browser init')
                     print('##### Went to solix for ' + arr_ppl[index][1] + ' #####')
                     #time.sleep(3)#-#
                     browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(arr_ppl[index][5])
@@ -350,16 +350,16 @@ def dundermain():
 ##            oisdjf=0
     ##t1_ = time.process_time()
     ##print(t1_-t1_s)
-        print(5)
+        print('after browser count?')
 ##        s=re.sub(r'[^\x00-\x7f]',r'', your-non-ascii-string)
 ##        print(arr_ppl)
         send_data(arr_ppl)
 ##        time.sleep(5)
-        print(6)
+        print('after sent arr_ppl to sheets')
 ##        time.sleep(5)
         arr_ppl = get_data()
 ##        print(arr_ppl)
-        print(8)
+        print('get new data from sheets')
         for person in range(len(arr_ppl)):
             if str(arr_ppl[person][2]) != str(arr_ppl[person][3]):
                 arr_ppl[person][3] = arr_ppl[person][2]
@@ -367,7 +367,7 @@ def dundermain():
                 print((arr_ppl[person][1],arr_ppl[person][2]))
                 time.sleep(1)
                 send_to_groupme(arr_ppl[person][1],arr_ppl[person][2])
-        print(7)
+        print('sending arr_ppl (new) to sheets')
 ##        print(arr_ppl)
         send_data(arr_ppl)
     print('time: ',time.time()-a)
@@ -400,7 +400,7 @@ def send_data(arr_ppl):
     return
 
 
-@sched.scheduled_job('interval', seconds=30)
+@sched.scheduled_job('interval', seconds=15)
 def timed_job():
     dundermain()
 
