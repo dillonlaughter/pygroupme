@@ -293,54 +293,7 @@ def dundermain():
             print('#1 #1 @printing arr_ppl')
             print(arr_ppl)
             if arr_ppl[index][0] == '1':
-                print('#1 #1 #0 @prepare for fail')
-                if 1==1: #prepare for fail turn from "try:"
-                    print('#1 #1 #1 @before browser init')
-                    #browser = webdriver.Chrome()
-                    browser.get('https://solixlifeline.com')
-                    ##
-                    print('#1 #1 #1 @after browser init')
-                    print('#1 #1 #1 @##### Went to solix for ' + arr_ppl[index][1] + ' #####')
-                    #time.sleep(3)#-#
-                    browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(arr_ppl[index][5])
-                    browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(arr_ppl[index][6])
-                    #time.sleep(3)#-#
-                    browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
-                    time.sleep(3)#-#
-                    try:
-                        if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
-                            arr_ppl[index][0] = '0'
-                            print('#1 #1 #1 #1 @login failure')
-                    except:
-                        debug_username = browser.find_element_by_id('ctl00_lblUserName').get_attribute('innerText')
-                        print('debug_username == ' + debug_username)
-                    ################ set function to curretn date
-                    
-                    browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('10/12/19')
-                    #time.sleep(3)#-#
-                    browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
-                    time.sleep(2.5)#-#
-                    print('#1 #1 #1 @getting debug_date')
-                    debug_date = browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value')
-                    complete_count = 0
-                    print('#1 #1 #1 @debug_date == ' + debug_date)
-                    ind=0
-                    while True:
-                        try:   
-                            text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[7]').get_attribute('innderText')
-                            #text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
-                            denial = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[8]').get_attribute('innerText')
-                            #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
-                            if text in complete_messages and denial == '':
-                                complete_count+=1
-                            ind+=1
-                        except:
-                            print('search table for complete broke')
-                            break
-                    print('complete count == ' + str(complete_count))
-                    arr_ppl[index][2] = complete_count
-#                 except:
-#                     print('#1 #1 #2 @break 1')
+                subroutine_in_middle()
             arr_ppl[index][7] = ('0'+str(time.localtime().tm_hour))[-2:]+'.'+('0'+str(time.localtime().tm_min))[-2:]+'.'+('0'+str(time.localtime().tm_sec))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
@@ -384,6 +337,57 @@ def dundermain():
     time.sleep((25-(time.time()-a)))
     reply('/run')
     return 
+
+def subroutine_in_middle():
+    print('#1 #1 #0 @prepare for fail')
+    if 1==1: #prepare for fail turn from "try:"
+        print('#1 #1 #1 @before browser init')
+        #browser = webdriver.Chrome()
+        browser.get('https://solixlifeline.com')
+        ##
+        print('#1 #1 #1 @after browser init')
+        print('#1 #1 #1 @##### Went to solix for ' + arr_ppl[index][1] + ' #####')
+        #time.sleep(3)#-#
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(arr_ppl[index][5])
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(arr_ppl[index][6])
+        #time.sleep(3)#-#
+        browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_LoginButton').click()
+        time.sleep(3)#-#
+        try:
+            if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
+                arr_ppl[index][0] = '0'
+                print('#1 #1 #1 #1 @login failure')
+                return
+        except:
+            debug_username = browser.find_element_by_id('ctl00_lblUserName').get_attribute('innerText')
+            print('debug_username == ' + debug_username)
+        ################ set function to curretn date
+
+        browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('10/12/19')
+        #time.sleep(3)#-#
+        browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
+        time.sleep(2.5)#-#
+        print('#1 #1 #1 @getting debug_date')
+        debug_date = browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value')
+        complete_count = 0
+        print('#1 #1 #1 @debug_date == ' + debug_date)
+        ind=0
+        while True:
+            try:   
+                text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[7]').get_attribute('innderText')
+                #text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
+                denial = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[8]').get_attribute('innerText')
+                #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
+                if text in complete_messages and denial == '':
+                    complete_count+=1
+                ind+=1
+            except:
+                print('search table for complete broke')
+                break
+        print('complete count == ' + str(complete_count))
+        arr_ppl[index][2] = complete_count
+#                 except:
+#                     print('#1 #1 #2 @break 1')
 
 def next_person(data):
     ### sorts arr_ppl to get the smallest date, returns the arr_ppl[index]
