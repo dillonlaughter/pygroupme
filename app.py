@@ -79,11 +79,11 @@ def webhook():
 
     if '/help' in msgtxt:
         reply('''
-        /help    ~ displays this help message
-        /start   ~ starts the bot
-        /run     ~ bot use only, used to continue app running
-        /set     ~ (in development) sets the emoji of a rep
-        /update  ~ updates the reps based on the github file
+        /`help    ~ displays this help message
+        /`start   ~ starts the bot
+        /`run     ~ bot use only, used to continue app running
+        /`set     ~ (in development) sets the emoji of a rep
+        /`update  ~ updates the reps based on the github file
         ''')
     if '/start' in msgtxt:
         reply('/run')
