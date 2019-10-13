@@ -31,7 +31,10 @@ chrome_options.add_argument('--no-sandbox')
 
 gc = gspread.authorize(credentials)
 wks = gc.open('Hurley Enterprises Production Log').sheet1
-complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
+complete_messages = [
+    'Complete. If customer present, dial 611 for test call and give phone',
+    'Complete. If customer present, dial 611 for test call and give phone
+    'Complete. If customer present make test call and give phone']
 
 
 
@@ -335,7 +338,7 @@ def dundermain():
         send_data(arr_ppl)
     print('time: ',time.time()-a)
     time.sleep((25-(time.time()-a)))
-    reply('/run')
+    reply('/run1')
     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
@@ -374,16 +377,21 @@ def subroutine_in_middle(browser,arr_ppl,index):
         ind=0
         while True:
             try:
+#                 element_01 = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0')
+#                 text = browser.find_element_by_id('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0"]/td[7]')
                 print('is table there?')
                 table = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers')
                 print('table is there')
-                text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[7]').get_attribute('innerText')
+                text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0"]/td[7]')
+                print('text = '+text)
+                
+                text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0"]/td[7]').get_attribute('innerText')
                 print('text = '+text)
                 #text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
                 denial = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[8]').get_attribute('innerText')
                 print('denial = '+denial)
                 #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
-                if text in complete_messages and denial == '':
+                if text in complete_messages and (denial == '' or denial == ' '):
                     print('add 1 to complete_count')
                     complete_count+=1
                 ind+=1
