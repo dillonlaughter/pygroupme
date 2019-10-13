@@ -8,6 +8,12 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from flask import Flask, request
 from apscheduler.schedulers.blocking import BlockingScheduler
+import groupy
+from groupy.client import Client as groupmeClient
+gmclient = groupmeClient.from_token('vW461v8rqQ8tya2YGf4J6cSWV5MUoVI2tuNHI60R')
+for gmgroups in gmclient.groups.list():
+    if gmgroups.name == 'AW log (updates only)':
+        gmlog = gmgroups
 
 
 
@@ -156,7 +162,7 @@ def send_to_groupme(name,count):
 ##        print(gmmessage.text)
     if int(count) != 0:
         print(name+ ' gm '+str(count))
-        reply(name+' is now at '+str(count))
+        gmlog(text=name+' is now at '+str(count))
         
 def dundermain():
     a=time.time()
