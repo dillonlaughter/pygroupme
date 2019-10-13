@@ -316,7 +316,10 @@ def dundermain():
                     #time.sleep(3)#-#
                     browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
                     time.sleep(2.5)#-#
+                    print('getting debug_date')
+                    debug_date = browser.fund_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value')
                     complete_count = 0
+                    print('debug_date == ' + debug_date)
                     ind=0
                     while True:
                         try:   
@@ -326,8 +329,8 @@ def dundermain():
                                 complete_count+=1
                             ind+=1
                         except:
-                            break
-                    print(complete_count)
+                            print('search table for complete broke')
+                    print('complete count == ' + complete_count)
                     arr_ppl[index][2] = complete_count
                 except:
                     oid=0
