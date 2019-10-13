@@ -371,7 +371,7 @@ def dundermain():
 ##        print(arr_ppl)
         send_data(arr_ppl)
     print('time: ',time.time()-a)
-    replt('/run')
+    reply('/run')
 
 def next_person(data):
     ### sorts arr_ppl to get the smallest date, returns the arr_ppl[index]
