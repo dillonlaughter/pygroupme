@@ -392,6 +392,7 @@ def subroutine_in_middle(browser,arr_ppl,index):
                 print('denial = "'+denial+'"')
                 #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
                 print('print both')
+                print(len(denial))
                 print(text in complete_messages,denial in denials)
                 if text in complete_messages and denial in denials:
                     print('add 1 to complete_count')
