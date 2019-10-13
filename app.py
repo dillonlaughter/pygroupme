@@ -334,6 +334,7 @@ def dundermain():
                             ind+=1
                         except:
                             print('search table for complete broke')
+                            break
                     print('complete count == ' + complete_count)
                     arr_ppl[index][2] = complete_count
 #                 except:
