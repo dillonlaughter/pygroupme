@@ -332,7 +332,7 @@ def dundermain():
             print(arr_ppl)
             if arr_ppl[index][0] == '1':
                 subroutine_in_middle(browser,arr_ppl,index)
-            
+            tztime = datetime.now(timezone('America/Los_Angeles'))
             arr_ppl[index][7] = (str(tztime.year))+'.'+('0'+str(tztime.month))[-2:]+'.'+('0'+str(tztime.day))[-2:]+'.'+('0'+str(tztime.hour))[-2:]+'.'+('0'+str(tztime.minute))[-2:]+'.'+('0'+str(tztime.second))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
