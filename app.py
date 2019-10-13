@@ -72,7 +72,7 @@ def webhook():
 
 
     
-    if '/run1' in msgtxt:
+    if '/run' in msgtxt:
         #debug777sched.start()
         dundermain()
     if '/set ' in msgtxt:
