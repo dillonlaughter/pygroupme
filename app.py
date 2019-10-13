@@ -395,6 +395,7 @@ def subroutine_in_middle(browser,arr_ppl,index):
             if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
                 arr_ppl[index][0] = '0'
                 print('#1 #1 #1 #1 @login failure')
+                gmlog.post(text='Login failed for '+arr_ppl[index][1]+'. Removing them from log.')
                 return
         except:
             debug_username = browser.find_element_by_id('ctl00_lblUserName').get_attribute('innerText')
