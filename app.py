@@ -87,7 +87,7 @@ def webhook():
         ''')
     if '/start' in msgtxt:
         reply('/run')
-    if '/run1' in msgtxt:
+    if '/run' in msgtxt:
         #debug777sched.start()
         dundermain()
     if '/update' in msgtxt:
@@ -371,7 +371,7 @@ def dundermain():
         send_data(arr_ppl)
     print('time: ',time.time()-a)
     time.sleep((25-(time.time()-a)))
-    reply('/run1')
+    reply('/run')
     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
