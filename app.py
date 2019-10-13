@@ -71,7 +71,7 @@ def webhook():
 
 
     
-    if '/run' in msgtxt:
+    if '/run1' in msgtxt:
         #debug777sched.start()
         dundermain()
     if '/set ' in msgtxt:
@@ -335,7 +335,7 @@ def dundermain():
         send_data(arr_ppl)
     print('time: ',time.time()-a)
     time.sleep((25-(time.time()-a)))
-    reply('/run')
+    reply('/run1')
     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
@@ -375,10 +375,13 @@ def subroutine_in_middle(browser,arr_ppl,index):
         while True:
             try:   
                 text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[7]').get_attribute('innderText')
+                print('text = '+text)
                 #text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
                 denial = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[8]').get_attribute('innerText')
+                print('denial = '+denial)
                 #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
                 if text in complete_messages and denial == '':
+                    print('add 1 to complete_count')
                     complete_count+=1
                 ind+=1
             except:
