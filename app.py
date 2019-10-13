@@ -333,7 +333,7 @@ def dundermain():
                     print('complete count == ' + complete_count)
                     arr_ppl[index][2] = complete_count
                 except:
-                    oid=0
+                    print('break 1')
             arr_ppl[index][7] = ('0'+str(time.localtime().tm_hour))[-2:]+'.'+('0'+str(time.localtime().tm_min))[-2:]+'.'+('0'+str(time.localtime().tm_sec))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
@@ -374,6 +374,7 @@ def dundermain():
 ##        print(arr_ppl)
         send_data(arr_ppl)
     print('time: ',time.time()-a)
+    time.sleep((25-(time.time()-a)))
     reply('/run')
     return 
 
@@ -404,8 +405,8 @@ def send_data(arr_ppl):
     return
 
 
-#debug777@sched.scheduled_job('interval', seconds=30)
-def timed_job():
-    dundermain()
-    return
+# #debug777@sched.scheduled_job('interval', seconds=30)
+# def timed_job():
+#     dundermain()
+#     return
 
