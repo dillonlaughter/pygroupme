@@ -24,7 +24,9 @@ import selenium.webdriver.chrome.options
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 import time
-from datetime import timedelta
+from datetime import timedelta,datetime
+from pytz import timezone
+tztime = datetime.now(timezone('America/Los_Angeles'))
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name('Hurley Production-54b7dbd26519.json',scope)
@@ -330,7 +332,8 @@ def dundermain():
             print(arr_ppl)
             if arr_ppl[index][0] == '1':
                 subroutine_in_middle(browser,arr_ppl,index)
-            arr_ppl[index][7] = (str(time.gmtime().tm_year))+'.'+('0'+str(time.gmtime().tm_mon))[-2:]+'.'+('0'+str(time.gmtime().tm_mday))[-2:]+'.'+('0'+str(time.gmtime().tm_hour))[-2:]+'.'+('0'+str(time.gmtime().tm_min))[-2:]+'.'+('0'+str(time.gmtime().tm_sec))[-2:]
+            
+            arr_ppl[index][7] = (str(tztime.year))+'.'+('0'+str(tztime.month))[-2:]+'.'+('0'+str(tztime.day))[-2:]+'.'+('0'+str(tztime.hour))[-2:]+'.'+('0'+str(tztime.minute))[-2:]+'.'+('0'+str(tztime.second))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
                 #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
@@ -402,7 +405,7 @@ def subroutine_in_middle(browser,arr_ppl,index):
             print('debug_username == ' + debug_username)
         ################ set function to curretn date
 
-        browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('10/12/19')
+        browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys(('0'+str(tztime.month))[-2:]+'/'+('0'+str(tztime.day))[-2:]+'/'+('0'+str(tztime.year))[-2:])
         #time.sleep(3)#-#
         browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
         time.sleep(5)#-#
