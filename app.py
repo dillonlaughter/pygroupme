@@ -387,7 +387,7 @@ def subroutine_in_middle(browser,arr_ppl,index):
             except:
                 print('search table for complete broke')
                 break
-        complete_count=3
+#         complete_count=3
         print('complete count == ' + str(complete_count))
         arr_ppl[index][2] = complete_count
 #                 except:
