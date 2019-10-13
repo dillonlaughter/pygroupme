@@ -282,24 +282,25 @@ def dundermain():
         activation = arr_acti_name[0]
         #wks.update_cell(2,1,'1')
         index = next_person(arr_ppl)
-        print('indexed next person')
+        print('#1 @indexed next person')
         
         if activation == '1':
             
             employee_count = int(arr_acti_name[1])
-            print('get employee count')
+            print('#1 #1 @get employee count')
         
 
-            print('printing arr_ppl')
+            print('#1 #1 @printing arr_ppl')
             print(arr_ppl)
             if arr_ppl[index][0] == '1':
-                try:
-                    print('before browser init')
+                print('#1 #1 #0 @prepare for fail')
+                if 1==1: #prepare for fail turn from "try:"
+                    print('#1 #1 #1 @before browser init')
                     #browser = webdriver.Chrome()
                     browser.get('https://solixlifeline.com')
                     ##
-                    print('after browser init')
-                    print('##### Went to solix for ' + arr_ppl[index][1] + ' #####')
+                    print('#1 #1 #1 @after browser init')
+                    print('#1 #1 #1 @##### Went to solix for ' + arr_ppl[index][1] + ' #####')
                     #time.sleep(3)#-#
                     browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_UserName_text').send_keys(arr_ppl[index][5])
                     browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_Password_text').send_keys(arr_ppl[index][6])
@@ -309,17 +310,20 @@ def dundermain():
                     try:
                         if browser.find_element_by_id('ctl00_GeneralContentPlaceHolder_Login1_lblFailureInfo').get_attribute('innerText') != "":
                             arr_ppl[index][0] = '0'
+                            print('#1 #1 #1 #1 @login failure')
                     except:
                         retd = 5
                     ################ set function to curretn date
+                    debug_username = browser.find_element_by_id('ctl00_lblUserName').get_attribute('innerText')
+                    print('debug_username == ' + debug_username)
                     browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('10/12/19')
                     #time.sleep(3)#-#
                     browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
                     time.sleep(2.5)#-#
-                    print('getting debug_date')
-                    debug_date = browser.fund_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value')
+                    print('#1 #1 #1 @getting debug_date')
+                    debug_date = browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value')
                     complete_count = 0
-                    print('debug_date == ' + debug_date)
+                    print('#1 #1 #1 @debug_date == ' + debug_date)
                     ind=0
                     while True:
                         try:   
@@ -333,7 +337,7 @@ def dundermain():
                     print('complete count == ' + complete_count)
                     arr_ppl[index][2] = complete_count
                 except:
-                    print('break 1')
+                    print('#1 #1 #2 @break 1')
             arr_ppl[index][7] = ('0'+str(time.localtime().tm_hour))[-2:]+'.'+('0'+str(time.localtime().tm_min))[-2:]+'.'+('0'+str(time.localtime().tm_sec))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
@@ -353,16 +357,16 @@ def dundermain():
 ##            oisdjf=0
     ##t1_ = time.process_time()
     ##print(t1_-t1_s)
-        print('after browser count?')
+        print('#2 @after browser count?')
 ##        s=re.sub(r'[^\x00-\x7f]',r'', your-non-ascii-string)
 ##        print(arr_ppl)
         send_data(arr_ppl)
 ##        time.sleep(5)
-        print('after sent arr_ppl to sheets')
+        print('#3 @after sent arr_ppl to sheets')
 ##        time.sleep(5)
         arr_ppl = get_data()
 ##        print(arr_ppl)
-        print('get new data from sheets')
+        print('#4 @get new data from sheets')
         for person in range(len(arr_ppl)):
             if str(arr_ppl[person][2]) != str(arr_ppl[person][3]):
                 arr_ppl[person][3] = arr_ppl[person][2]
@@ -370,7 +374,7 @@ def dundermain():
                 print((arr_ppl[person][1],arr_ppl[person][2]))
                 time.sleep(1)
                 send_to_groupme(arr_ppl[person][1],arr_ppl[person][2])
-        print('sending arr_ppl (new) to sheets')
+        print('#5 @sending arr_ppl (new) to sheets')
 ##        print(arr_ppl)
         send_data(arr_ppl)
     print('time: ',time.time()-a)
