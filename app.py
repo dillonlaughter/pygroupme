@@ -394,7 +394,7 @@ def subroutine_in_middle(browser,arr_ppl,index):
                 print('print both')
                 print(len(denial))
                 print(text in complete_messages,denial in denials)
-                if text in complete_messages and denial in denials:
+                if text in complete_messages and len(denial)<3:
                     print('add 1 to complete_count')
                     complete_count+=1
                 ind+=1
