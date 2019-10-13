@@ -91,7 +91,7 @@ def webhook():
         #debug777sched.start()
         dundermain()
     if '/update' in msgtxt:
-        
+        txt=wks.cell(3,2).value
         len(txt[txt.index('{')+1:txt.index('}')].split('\n'))
         gitsrc=txt[txt.index('{')+1:txt.index('}')].split('\n')
         excelarr = [['' for i in range(8)] for i in range(len(txt[txt.index('{')+1:txt.index('}')].split('\n'))-1)]
