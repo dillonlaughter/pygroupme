@@ -312,10 +312,10 @@ def dundermain():
                             arr_ppl[index][0] = '0'
                             print('#1 #1 #1 #1 @login failure')
                     except:
-                        retd = 5
+                        debug_username = browser.find_element_by_id('ctl00_lblUserName').get_attribute('innerText')
+                        print('debug_username == ' + debug_username)
                     ################ set function to curretn date
-                    debug_username = browser.find_element_by_id('ctl00_lblUserName').get_attribute('innerText')
-                    print('debug_username == ' + debug_username)
+                    
                     browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('10/12/19')
                     #time.sleep(3)#-#
                     browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
