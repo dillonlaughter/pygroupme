@@ -71,7 +71,7 @@ def webhook():
 
 
     
-    if '/run' in msgtxt:
+    if '/run1' in msgtxt:
         #debug777sched.start()
         dundermain()
     if '/set ' in msgtxt:
@@ -335,7 +335,7 @@ def dundermain():
         send_data(arr_ppl)
     print('time: ',time.time()-a)
     time.sleep((25-(time.time()-a)))
-    reply('/run1')
+    reply('/run')
     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
@@ -379,8 +379,8 @@ def subroutine_in_middle(browser,arr_ppl,index):
                 print('is table there?')
                 table = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers')
                 print('table is there')
-                text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0"]/td[7]')
-                print('text = '+text)
+                text = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0')
+                print(text)
                 
                 text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0"]/td[7]').get_attribute('innerText')
                 print('text = '+text)
