@@ -77,10 +77,39 @@ def webhook():
     msgtxt = message['text']
 
 
-    
+    if '/help' in msgtxt:
+        reply('''
+        /help    ~ displays this help message
+        /start   ~ starts the bot
+        /run     ~ bot use only, used to continue app running
+        /set     ~ (in development) sets the emoji of a rep
+        /update  ~ updates the reps based on the github file
+        ''')
+    if '/start' in msgtxt:
+        reply('/run')
     if '/run1' in msgtxt:
         #debug777sched.start()
         dundermain()
+    if '/update' in msgtxt:
+        
+        len(txt[txt.index('{')+1:txt.index('}')].split('\n'))
+        gitsrc=txt[txt.index('{')+1:txt.index('}')].split('\n')
+        excelarr = [['' for i in range(8)] for i in range(len(txt[txt.index('{')+1:txt.index('}')].split('\n'))-1)]
+        excelarr[0] = ['0','Unknown','0','0','#','pres0703','Ignore@1','2019.10.13.08.25.48']
+        for i in range(1,len(txt[txt.index('{')+1:txt.index('}')].split('\n'))-1):
+            excelarr[i][5] = gitsrc[i][gitsrc[i].index("'")+1:gitsrc[i].index("'",gitsrc[i].index("'")+1)]
+            excelarr[i][6] = gitsrc[i][gitsrc[i].index("'",gitsrc[i].index(",")+1)+1:gitsrc[i].index("'",gitsrc[i].index("'",gitsrc[i].index(",")+1)+1)]
+            excelarr[i][1] = gitsrc[i][gitsrc[i].rindex("'",0,gitsrc[i].rindex("'"))+1:gitsrc[i].rindex("'")]
+            excelarr[i][0] = '1'
+            excelarr[i][2] = '0'
+            excelarr[i][3] = '0'
+            excelarr[i][7] = '2019.10.13.08.25.48'
+            excelarr[i][4] = '#'
+        temp=[]
+        for i in range(len(excelarr)):temp.append('~'.join(excelarr[i]))
+        excelfinal='|'.join(temp)
+        wks.update_cell(1,12, excelfinal)
+        
     if '/set ' in msgtxt:
         msgparts = msgtxt.split(' ')
         emoji = msgparts[-1]
@@ -301,7 +330,7 @@ def dundermain():
             print(arr_ppl)
             if arr_ppl[index][0] == '1':
                 subroutine_in_middle(browser,arr_ppl,index)
-            arr_ppl[index][7] = ('0'+str(time.localtime().tm_hour))[-2:]+'.'+('0'+str(time.localtime().tm_min))[-2:]+'.'+('0'+str(time.localtime().tm_sec))[-2:]
+            arr_ppl[index][7] = (str(time.gmtime().tm_year))+'.'+('0'+str(time.gmtime().tm_mon))[-2:]+'.'+('0'+str(time.gmtime().tm_mday))[-2:]+'.'+('0'+str(time.gmtime().tm_hour))[-2:]+'.'+('0'+str(time.gmtime().tm_min))[-2:]+'.'+('0'+str(time.gmtime().tm_sec))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
                 #print(arr_ppl[employee_number][3],arr_ppl[employee_number][2])
