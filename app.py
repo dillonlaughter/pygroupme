@@ -340,6 +340,8 @@ def dundermain():
     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
+    complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
+    denials = ['&nbsp;',' ','']
     print('#1 #1 #0 @prepare for fail')
     if 1==1: #prepare for fail turn from "try:"
         print('#1 #1 #1 @before browser init')
