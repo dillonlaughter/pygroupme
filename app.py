@@ -71,7 +71,7 @@ def webhook():
 
 
     
-    if '/run1' in msgtxt:
+    if '/run' in msgtxt:
         #debug777sched.start()
         dundermain()
     if '/set ' in msgtxt:
@@ -335,7 +335,7 @@ def dundermain():
         send_data(arr_ppl)
     print('time: ',time.time()-a)
     time.sleep((25-(time.time()-a)))
-    reply('/run1')
+    reply('/run')
     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
@@ -366,7 +366,7 @@ def subroutine_in_middle(browser,arr_ppl,index):
         browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').send_keys('10/12/19')
         #time.sleep(3)#-#
         browser.find_element_by_id('ctl00_MainPlaceHolder_btnSearch').click()
-        time.sleep(2.5)#-#
+        time.sleep(5)#-#
         print('#1 #1 #1 @getting debug_date')
         debug_date = browser.find_element_by_id('ctl00_MainPlaceHolder_radtbDate_dateInput_text').get_attribute('value')
         complete_count = 0
