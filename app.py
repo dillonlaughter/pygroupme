@@ -327,8 +327,10 @@ def dundermain():
                     ind=0
                     while True:
                         try:   
-                            text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
-                            denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
+                            text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[7]').get_attribute('innderText')
+                            #text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
+                            denial = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[8]').get_attribute('innerText')
+                            #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
                             if text in complete_messages and denial == '':
                                 complete_count+=1
                             ind+=1
