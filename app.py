@@ -65,6 +65,7 @@ def webhook():
     gc = gspread.authorize(credentials)
     wks = gc.open('Hurley Enterprises Production Log').sheet1
     complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
+    denials = ['&nbsp;',' ','']
 
     message = request.get_json()
     msgtxt = message['text']
@@ -388,7 +389,9 @@ def subroutine_in_middle(browser,arr_ppl,index):
                 denial = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[8]').get_attribute('innerText')
                 print('denial = "'+denial+'"')
                 #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
-                if text in complete_messages and (denial == '' or denial == ' '):
+                print('print both')
+                print(text in complete_messages,denial in denials)
+                if text in complete_messages and denial in denials:
                     print('add 1 to complete_count')
                     complete_count+=1
                 ind+=1
