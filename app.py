@@ -293,7 +293,7 @@ def dundermain():
             print('#1 #1 @printing arr_ppl')
             print(arr_ppl)
             if arr_ppl[index][0] == '1':
-                subroutine_in_middle()
+                subroutine_in_middle(browser,arr_ppl,index)
             arr_ppl[index][7] = ('0'+str(time.localtime().tm_hour))[-2:]+'.'+('0'+str(time.localtime().tm_min))[-2:]+'.'+('0'+str(time.localtime().tm_sec))[-2:]
                 #wks.update_cell(employee_number+2,5,complete_count)
                 #employee_previous = wks.cell(employee_number+2,6).value
