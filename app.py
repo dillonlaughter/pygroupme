@@ -372,6 +372,7 @@ def dundermain():
         send_data(arr_ppl)
     print('time: ',time.time()-a)
     reply('/run')
+    return 
 
 def next_person(data):
     ### sorts arr_ppl to get the smallest date, returns the arr_ppl[index]
@@ -403,4 +404,5 @@ def send_data(arr_ppl):
 @sched.scheduled_job('interval', seconds=30)
 def timed_job():
     dundermain()
+    return
 
