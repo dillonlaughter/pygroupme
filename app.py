@@ -31,10 +31,7 @@ chrome_options.add_argument('--no-sandbox')
 
 gc = gspread.authorize(credentials)
 wks = gc.open('Hurley Enterprises Production Log').sheet1
-complete_messages = [
-    'Complete. If customer present, dial 611 for test call and give phone',
-    'Complete. If customer present, dial 611 for test call and give phone
-    'Complete. If customer present make test call and give phone']
+complete_messages = ['Complete. If customer present, dial 611 for test call and give phone',    'Complete. If customer present make test call and give phone']
 
 
 
