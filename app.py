@@ -379,14 +379,14 @@ def subroutine_in_middle(browser,arr_ppl,index):
                 print('is table there?')
                 table = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers')
                 print('table is there')
-                text = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0')
-                print(text)
+#                 text = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0')
+#                 print(text)
                 
-                text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__0"]/td[7]').get_attribute('innerText')
+                text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[7]').get_attribute('innerText')
                 print('text = '+text)
                 #text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
                 denial = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[8]').get_attribute('innerText')
-                print('denial = '+denial)
+                print('denial = "'+denial+'"')
                 #denial = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(8)').get_attribute('innerText')
                 if text in complete_messages and (denial == '' or denial == ' '):
                     print('add 1 to complete_count')
