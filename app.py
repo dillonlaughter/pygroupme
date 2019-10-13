@@ -373,7 +373,10 @@ def subroutine_in_middle(browser,arr_ppl,index):
         print('#1 #1 #1 @debug_date == ' + debug_date)
         ind=0
         while True:
-            try:   
+            try:
+                print('is table there?')
+                table = browser.find_element_by_id('ctl00_MainPlaceHolder_radgrdSearchRetailCustomers')
+                print('table is there')
                 text = browser.find_element_by_xpath('//*[@id="ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+'"]/td[7]').get_attribute('innderText')
                 print('text = '+text)
                 #text = browser.find_element_by_css_selector('#ctl00_MainPlaceHolder_radgrdSearchRetailCustomers_ctl00__'+str(ind)+' > td:nth-child(7)').get_attribute('innerText')
