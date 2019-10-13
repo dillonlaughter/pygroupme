@@ -37,7 +37,7 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 
 browser = webdriver.Chrome()
 
-sched = BlockingScheduler()
+#debug777sched = BlockingScheduler()
 
 '''
 
@@ -72,8 +72,8 @@ def webhook():
 
     
     if '/run' in msgtxt:
-        sched.start()
-#         dundermain()
+        #debug777sched.start()
+        dundermain()
     if '/set ' in msgtxt:
         msgparts = msgtxt.split(' ')
         emoji = msgparts[-1]
@@ -404,7 +404,7 @@ def send_data(arr_ppl):
     return
 
 
-@sched.scheduled_job('interval', seconds=30)
+#debug777@sched.scheduled_job('interval', seconds=30)
 def timed_job():
     dundermain()
     return
