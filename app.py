@@ -45,7 +45,7 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 
 browser = webdriver.Chrome()
 
-#debug777sched = BlockingScheduler()
+sched = BlockingScheduler()
 
 '''
 
@@ -374,7 +374,7 @@ def dundermain():
         send_data(arr_ppl)
     print('time: ',time.time()-a)
     time.sleep((25-(time.time()-a)))
-    reply('/run')
+    #reply('/run')
     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
@@ -473,8 +473,8 @@ def send_data(arr_ppl):
     return
 
 
-# #debug777@sched.scheduled_job('interval', seconds=30)
-# def timed_job():
-#     dundermain()
-#     return#
+@sched.scheduled_job('interval', seconds=30)
+def timed_job():
+    print('#######################################################################################################################')
+    return
 
