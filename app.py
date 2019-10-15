@@ -92,8 +92,8 @@ def webhook():
         reply('/run')
     if '/run' in msgtxt:
         #debug777sched.start()
-        sched.start()
-#         dundermain()
+#         sched.start()
+        dundermain()
     if '/update' in msgtxt:
         txt=wks.cell(3,2).value
         len(txt[txt.index('{')+1:txt.index('}')].split('\n'))
@@ -477,7 +477,8 @@ def send_data(arr_ppl):
 
 @sched.scheduled_job('interval', seconds=25)
 def timed_job():
-    dundermain()
+#     dundermain()
+    reply('/run')
     print('#######################################################################################################################')
     return
 
