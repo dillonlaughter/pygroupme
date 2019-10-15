@@ -88,8 +88,8 @@ def webhook():
         /`update  ~ updates the reps based on the github file
         ''')
     if '/start' in msgtxt:
-        
-        reply('/run')
+        sched.start()
+#         reply('/run')
     if '/run' in msgtxt:
         #debug777sched.start()
 #         sched.start()
