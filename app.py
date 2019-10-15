@@ -45,7 +45,7 @@ complete_messages = ['Complete. If customer present, dial 611 for test call and 
 
 browser = webdriver.Chrome()
 
-sched = BlockingScheduler()
+
 
 '''
 
@@ -88,6 +88,7 @@ def webhook():
         /`update  ~ updates the reps based on the github file
         ''')
     if '/start' in msgtxt:
+        sched = BlockingScheduler()
         reply('/run')
     if '/run' in msgtxt:
         #debug777sched.start()
