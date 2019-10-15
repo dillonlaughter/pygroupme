@@ -88,11 +88,12 @@ def webhook():
         /`update  ~ updates the reps based on the github file
         ''')
     if '/start' in msgtxt:
-        sched.start()
+        
         reply('/run')
     if '/run' in msgtxt:
         #debug777sched.start()
-        dundermain()
+        sched.start()
+#         dundermain()
     if '/update' in msgtxt:
         txt=wks.cell(3,2).value
         len(txt[txt.index('{')+1:txt.index('}')].split('\n'))
@@ -476,6 +477,7 @@ def send_data(arr_ppl):
 
 @sched.scheduled_job('interval', seconds=25)
 def timed_job():
+    dundermain()
     print('#######################################################################################################################')
     return
 
