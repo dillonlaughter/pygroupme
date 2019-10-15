@@ -375,9 +375,9 @@ def dundermain():
 ##        print(arr_ppl)
         send_data(arr_ppl)
     print('time: ',time.time()-a)
-    time.sleep((25-(time.time()-a)))
+#     time.sleep((25-(time.time()-a)))
     #reply('/run')
-    return 
+#     return 
 
 def subroutine_in_middle(browser,arr_ppl,index):
     complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
