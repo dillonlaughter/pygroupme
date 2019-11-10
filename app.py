@@ -38,7 +38,7 @@ chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 
 gc = gspread.authorize(credentials)
-wks = gc.open('Hurley Enterprises Production Log').sheet1
+wks = gc.open('Credico Apps to run').sheet1
 complete_messages = ['Complete. If customer present, dial 611 for test call and give phone',    'Complete. If customer present make test call and give phone']
 
 
@@ -71,7 +71,7 @@ def webhook():
 
 
     gc = gspread.authorize(credentials)
-    wks = gc.open('Hurley Enterprises Production Log').sheet1
+    wks = gc.open('Credico Apps to run').sheet1
     complete_messages = ['Complete. If customer present, dial 611 for test call and give phone','Complete. If customer present make test call and give phone']
     denials = ['&nbsp;',' ','']
 
@@ -310,6 +310,51 @@ def dundermain():
             browser.quit()
             print('E unnat quit')
 
+    def usable():
+        currentRow = int(wks.cell(2,1).value)
+        mass = wks.cell(currentRow,3).value
+        arr = mass.split('|')
+        if len(arr) != 8:
+            return 'No'
+        nasf = arr[0]
+        regexName = re.compile('[^a-zA-Z0-9 ]')
+        fn = regexName.sub('',arr[1])
+        for i in fn.split(' '):
+            if False not in [len(x)<2] for x in i
+                retrun 'No'
+        ln = regexName.sub('',arr[2])
+        for i in ln.split(' '):
+            if False not in [len(x)<2] for x in i
+                retrun 'No'
+        ## date of birth
+        
+        regexDob = re.compile('[0-9]{4}')
+        if regexDob.match(arr[4]) != None or len(arr[4]) != 4:
+            return 'No'
+        return True
+            
+            
+            
+        # for fn and ln remove all one len words
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     temp = wks.cell(3,1).value
     arr_acti_name = temp.split('|')
     quitvar = 0    
